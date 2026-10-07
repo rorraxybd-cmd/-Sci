@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>COMING SOON | RORRAXY Sci-Tech Academy</title>
+    <title>RORRAXY C-Tech Academy | Coming Soon</title>
 
-    <!-- Google Luxury Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&display=swap" rel="stylesheet">
+    <!-- Typography & Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Ecosystem Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- GSAP for Smooth Cinematic Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
         :root {
-            --bg-black: #000000;
-            --gold-light: #ffffff;
-            --gold-mid: #ffd700;
-            --gold-dark: #b8860b;
+            --bg-black: #030305;
+            --gold-primary: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --cyan-glow: #00f3ff;
+            --purple-glow: #8a2be2;
             --font-luxury: 'Cinzel', serif;
+            --font-tech: 'Orbitron', sans-serif;
         }
 
         * {
@@ -28,202 +32,397 @@
         }
 
         html, body {
-            width: 100vw;
-            height: 100vh;
-            background: var(--bg-black) !important;
-            font-family: var(--font-luxury);
+            width: 100%;
+            height: 100%;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-color: var(--bg-black);
+            font-family: var(--font-luxury);
+            color: #ffffff;
         }
 
-        /* Dynamic Golden Aurora Glow in Background */
-        .aurora-bg {
+        /* Fullscreen Interactive Canvas */
+        #canvas-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             z-index: 1;
-            pointer-events: none;
         }
 
-        .aurora-orb {
-            position: absolute;
-            width: 60vw;
-            height: 60vw;
-            max-width: 600px;
-            max-height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
-            filter: blur(80px);
-            animation: pulseGlow 8s infinite ease-in-out alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(0.8); opacity: 0.4; }
-            100% { transform: scale(1.2); opacity: 0.8; }
-        }
-
-        /* Floating Golden Dust Canvas */
-        #dustCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* Center Display Stage */
-        .coming-soon-container {
+        /* Glassmorphism Luxury Overlay Container */
+        .viewport-wrapper {
             position: relative;
             z-index: 10;
+            width: 100%;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: clamp(4px, 1.2vw, 16px);
-            padding: 20px;
-            text-align: center;
+            flex-direction: column;
+            pointer-events: none;
         }
 
-        /* Pure Metallic Gold Shimmering Typography Effect */
-        .letter {
-            font-size: clamp(2.2rem, 7.5vw, 6rem);
+        /* Futuristic Ecosystem Orbit Rings */
+        .orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(212, 175, 55, 0.15);
+            pointer-events: none;
+            animation: rotateOrbit 40s linear infinite;
+        }
+
+        .orbit-1 { width: 320px; height: 320px; border-color: rgba(0, 243, 255, 0.2); }
+        .orbit-2 { width: 520px; height: 520px; animation-duration: 65s; animation-direction: reverse; }
+        .orbit-3 { width: 750px; height: 750px; animation-duration: 90s; border-color: rgba(138, 43, 226, 0.2); }
+
+        @keyframes rotateOrbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Dynamic Floating Nodes with Upright Icons */
+        .eco-node {
+            position: absolute;
+            width: 38px;
+            height: 38px;
+            background: rgba(5, 5, 8, 0.65);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .eco-icon {
+            font-size: 1.1rem;
+            color: var(--gold-primary);
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Keep icons upright during ring rotations */
+        .orbit-1 .eco-icon { animation: counterRotate1 40s linear infinite; }
+        .orbit-2 .eco-icon { animation: counterRotate2 65s linear infinite; }
+        .orbit-3 .eco-icon { animation: counterRotate3 90s linear infinite; }
+
+        @keyframes counterRotate1 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+        @keyframes counterRotate2 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes counterRotate3 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        /* Center Content Box */
+        .content-core {
+            position: relative;
+            text-align: center;
+            pointer-events: auto;
+            cursor: pointer;
+            padding: 22px 42px;
+            background: rgba(5, 5, 8, 0.55);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.8),
+                        inset 0 0 15px rgba(212, 175, 55, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .content-core:hover {
+            border-color: rgba(0, 243, 255, 0.5);
+            box-shadow: 0 0 45px rgba(0, 243, 255, 0.25),
+                        inset 0 0 20px rgba(212, 175, 55, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Core Text Animation - ONLY COMING SOON */
+        .coming-soon-text {
+            font-family: var(--font-tech);
+            font-size: clamp(1.5rem, 4.5vw, 3rem);
             font-weight: 900;
-            letter-spacing: clamp(3px, 1vw, 10px);
-            background: linear-gradient(180deg, #ffffff 0%, #fff2ac 25%, #ffd700 65%, #996515 100%);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+            position: relative;
             display: inline-block;
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.65));
-            animation: waveGlow 2.8s ease-in-out infinite alternate;
-            will-change: transform, filter;
         }
 
-        /* Smooth Breathing Wave Animation */
-        @keyframes waveGlow {
-            0% {
-                transform: translateY(0) scale(1);
-                filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
-            }
-            100% {
-                transform: translateY(-10px) scale(1.05);
-                filter: drop-shadow(0 0 35px rgba(255, 215, 0, 1));
-            }
-        }
-
-        .word-gap {
-            width: clamp(16px, 3.5vw, 45px);
-        }
-
-        /* Responsive Fix for Mobile */
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .letter {
-                font-size: clamp(1.8rem, 8.5vw, 3.2rem);
-                letter-spacing: 3px;
-            }
+            .orbit-1 { width: 260px; height: 260px; }
+            .orbit-2 { width: 380px; height: 380px; }
+            .orbit-3 { display: none; }
+            .eco-node { width: 32px; height: 32px; }
+            .eco-icon { font-size: 0.9rem; }
+            .content-core { padding: 16px 28px; }
+            .coming-soon-text { letter-spacing: 4px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Soft Golden Glow Layer -->
-    <div class="aurora-bg">
-        <div class="aurora-orb"></div>
+    <!-- Canvas for 3D Dynamic Neural & Particle Network -->
+    <div id="canvas-container">
+        <canvas id="bgCanvas"></canvas>
     </div>
 
-    <!-- Golden Dust Particle Canvas -->
-    <canvas id="dustCanvas"></canvas>
+    <!-- Main Viewport Overlay -->
+    <div class="viewport-wrapper">
+        
+        <!-- Rotating Ecosystem Orbit System -->
+        <div class="orbit-ring orbit-1">
+            <!-- Code / Tech -->
+            <div class="eco-node" style="top: -19px; left: calc(50% - 19px);">
+                <i class="fa-solid fa-code eco-icon"></i>
+            </div>
+            <!-- API -->
+            <div class="eco-node" style="bottom: -19px; left: calc(50% - 19px);">
+                <i class="fa-solid fa-network-wired eco-icon"></i>
+            </div>
+        </div>
 
-    <!-- Main "COMING SOON" Typography -->
-    <div class="coming-soon-container" id="textContainer">
-        <!-- Letters rendered automatically via JavaScript -->
+        <div class="orbit-ring orbit-2">
+            <!-- Problem Solving & Logic -->
+            <div class="eco-node" style="top: 18%; left: 10%;">
+                <i class="fa-solid fa-brain eco-icon"></i>
+            </div>
+            <!-- Science & Math -->
+            <div class="eco-node" style="top: 18%; right: 10%;">
+                <i class="fa-solid fa-atom eco-icon"></i>
+            </div>
+            <!-- Software Engineering -->
+            <div class="eco-node" style="bottom: 18%; left: 10%;">
+                <i class="fa-solid fa-laptop-code eco-icon"></i>
+            </div>
+            <!-- AI & Algorithms -->
+            <div class="eco-node" style="bottom: 18%; right: 10%;">
+                <i class="fa-solid fa-microchip eco-icon"></i>
+            </div>
+        </div>
+
+        <div class="orbit-ring orbit-3">
+            <!-- Video & Motion Creation -->
+            <div class="eco-node" style="top: calc(50% - 19px); left: -19px;">
+                <i class="fa-solid fa-film eco-icon"></i>
+            </div>
+            <!-- Creative Graphics Design -->
+            <div class="eco-node" style="top: calc(50% - 19px); right: -19px;">
+                <i class="fa-solid fa-wand-magic-sparkles eco-icon"></i>
+            </div>
+            <!-- Accounting & Finance Software -->
+            <div class="eco-node" style="top: -19px; left: calc(50% - 19px);">
+                <i class="fa-solid fa-chart-line eco-icon"></i>
+            </div>
+            <!-- Global Business Systems -->
+            <div class="eco-node" style="bottom: -19px; left: calc(50% - 19px);">
+                <i class="fa-solid fa-globe eco-icon"></i>
+            </div>
+        </div>
+
+        <!-- Central Focal Point: ONLY COMING SOON -->
+        <div class="content-core" id="triggerCore">
+            <h1 class="coming-soon-text" id="mainText">COMING SOON</h1>
+        </div>
+
     </div>
 
     <script>
-        /* 1. Dynamic Letter Generator with Smooth Wave Delay */
-        const text = "COMING SOON";
-        const container = document.getElementById('textContainer');
-
-        text.split('').forEach((char, index) => {
-            if (char === " ") {
-                const space = document.createElement('div');
-                space.className = 'word-gap';
-                container.appendChild(space);
-            } else {
-                const letter = document.createElement('span');
-                letter.className = 'letter';
-                letter.textContent = char;
-                // Letter by letter staggered delay
-                letter.style.animationDelay = `${index * 0.12}s`;
-                container.appendChild(letter);
-            }
-        });
-
-        /* 2. Floating Golden Particles (Dust Effect) */
-        const canvas = document.getElementById('dustCanvas');
+        /* -------------------------------------------------------------
+           1. CANVAS PARTICLE & NEURAL MESH SYSTEM (3D VISUALIZATION)
+        ------------------------------------------------------------- */
+        const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
 
         let width, height;
         let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
 
-        function initCanvas() {
+        function resizeCanvas() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
+        }
 
-            particles = [];
-            const count = Math.floor(width < 768 ? 35 : 80);
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-            for (let i = 0; i < count; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    radius: Math.random() * 1.8 + 0.4,
-                    speedY: -(Math.random() * 0.4 + 0.1),
-                    speedX: (Math.random() - 0.5) * 0.2,
-                    alpha: Math.random() * 0.8 + 0.2,
-                    step: Math.random() * 0.01 + 0.005
-                });
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.size = Math.random() * 2 + 1;
+                this.baseAlpha = Math.random() * 0.5 + 0.2;
+                this.color = Math.random() > 0.4 ? '#d4af37' : (Math.random() > 0.5 ? '#00f3ff' : '#8a2be2');
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                if (mouse.x && mouse.y) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < mouse.radius) {
+                        let force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= (dx / distance) * force * 2;
+                        this.y -= (dy / distance) * force * 2;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = this.color;
+                ctx.fill();
             }
         }
 
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
-
-        function renderParticles() {
-            ctx.clearRect(0, 0, width, height);
-
-            particles.forEach(p => {
-                p.y += p.speedY;
-                p.x += p.speedX;
-                p.alpha += p.step;
-
-                if (p.alpha > 0.95 || p.alpha < 0.15) {
-                    p.step *= -1;
-                }
-
-                if (p.y < 0) {
-                    p.y = height;
-                    p.x = Math.random() * width;
-                }
-
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 215, 0, ${p.alpha})`;
-                ctx.shadowColor = '#ffd700';
-                ctx.shadowBlur = 10;
-                ctx.fill();
-                ctx.restore();
-            });
-
-            requestAnimationFrame(renderParticles);
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.floor((width * height) / 11000);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
         }
 
-        requestAnimationFrame(renderParticles);
+        initParticles();
+
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    let dx = particles[a].x - particles[b].x;
+                    let dy = particles[a].y - particles[b].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 120) {
+                        let opacity = 1 - (distance / 120);
+                        ctx.strokeStyle = `rgba(212, 175, 55, ${opacity * 0.2})`;
+                        ctx.lineWidth = 0.7;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            
+            let bgGrad = ctx.createRadialGradient(width / 2, height / 2, 50, width / 2, height / 2, width);
+            bgGrad.addColorStop(0, '#0a0a12');
+            bgGrad.addColorStop(0.6, '#030305');
+            bgGrad.addColorStop(1, '#000000');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, width, height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            connectParticles();
+            requestAnimationFrame(animateCanvas);
+        }
+
+        animateCanvas();
+
+        /* -------------------------------------------------------------
+           2. GSAP LUXURY TEXT SHIMMER & REVEAL ANIMATIONS
+        ------------------------------------------------------------- */
+        gsap.from("#mainText", {
+            duration: 2,
+            scale: 0.9,
+            opacity: 0,
+            filter: "blur(12px)",
+            ease: "power3.out"
+        });
+
+        gsap.to("#mainText", {
+            duration: 3,
+            textShadow: "0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(0, 243, 255, 0.4)",
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.easeInOut"
+        });
+
+        /* -------------------------------------------------------------
+           3. WEB AUDIO API (CINEMATIC SYNTH AMBIENCE ENGINE)
+        ------------------------------------------------------------- */
+        let audioCtx = null;
+
+        function playAmbientSound() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(55, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 4);
+
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 2);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 5);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 5);
+        }
+
+        window.addEventListener('click', () => {
+            playAmbientSound();
+
+            for (let i = 0; i < 12; i++) {
+                let p = new Particle();
+                p.x = mouse.x || width / 2;
+                p.y = mouse.y || height / 2;
+                p.vx = (Math.random() - 0.5) * 5;
+                p.vy = (Math.random() - 0.5) * 5;
+                p.size = Math.random() * 3 + 1.5;
+                particles.push(p);
+            }
+        });
     </script>
 </body>
 </html>
