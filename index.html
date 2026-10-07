@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RORRAXY C-Tech Academy | Coming Soon</title>
+    <title>RORRAXY C-Tech Academy | Luxury Gold Edition</title>
 
-    <!-- Luxury & Tech Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome Ecosystem Icons -->
+    <!-- Luxury Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-pitch-black: #000000;
-            --gold-glow: #ffd700;
-            --cyan-glow: #00f3ff;
-            --purple-glow: #bc13fe;
+            --pure-black: #000000;
+            --gold-bright: #ffe600;
+            --gold-main: #ffd700;
+            --gold-dark: #b8860b;
+            --gold-glow: rgba(255, 215, 0, 0.8);
+            --font-luxury: 'Cinzel', serif;
             --font-tech: 'Orbitron', sans-serif;
         }
 
@@ -32,12 +33,12 @@
             height: 100%;
             overflow: hidden;
             background: #000000 !important;
-            font-family: var(--font-tech);
+            font-family: var(--font-luxury);
             color: #ffffff;
             touch-action: manipulation;
         }
 
-        #solarCanvas {
+        #gravityCanvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -48,7 +49,7 @@
             display: block;
         }
 
-        /* Pure Floating Text Stage Without Any Box/Shape */
+        /* Responsive Layout Container */
         .stage-container {
             position: fixed;
             top: 0;
@@ -66,41 +67,54 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: clamp(4px, 1vw, 12px);
+            gap: clamp(3px, 0.8vw, 10px);
             pointer-events: auto;
             cursor: pointer;
+            transition: all 0.5s ease;
         }
 
-        /* Supersonic Crisp Typography */
+        /* Pure Golden Shimmering Typography */
         .letter {
-            font-size: clamp(1.6rem, 4.5vw, 3.8rem);
+            font-size: clamp(1.6rem, 4.2vw, 3.6rem);
             font-weight: 900;
-            letter-spacing: clamp(2px, 0.8vw, 8px);
-            background: linear-gradient(180deg, #ffffff 0%, #ffd700 50%, #00f3ff 100%);
+            letter-spacing: clamp(2px, 0.6vw, 6px);
+            background: linear-gradient(180deg, #ffffff 0%, #fff0a8 25%, #ffd700 65%, #996515 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
-            filter: drop-shadow(0 0 12px rgba(0, 243, 255, 0.8));
-            animation: textFloat 2.5s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+            animation: goldPulse 3s ease-in-out infinite alternate;
             will-change: transform, filter;
         }
 
-        @keyframes textFloat {
-            0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.8)); }
-            100% { transform: translateY(-5px) scale(1.03); filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)); }
+        @keyframes goldPulse {
+            0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5)); }
+            100% { transform: translateY(-4px) scale(1.02); filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.95)); }
         }
 
         .word-gap {
-            width: clamp(12px, 2.5vw, 32px);
+            width: clamp(10px, 2vw, 26px);
+        }
+
+        /* Mobile specific positioning (Top aligned to leave center orbit clear) */
+        @media (max-width: 768px) {
+            .stage-container {
+                align-items: flex-start;
+                padding-top: 12vh;
+            }
+            .letter {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Supersonic Responsive Canvas -->
-    <canvas id="solarCanvas"></canvas>
+    <!-- Gravity Solar Loop Canvas -->
+    <canvas id="gravityCanvas"></canvas>
 
-    <!-- Clean Center Text Stage -->
+    <!-- Stage Layout -->
     <div class="stage-container">
         <div class="coming-soon-wrapper" id="textContainer">
             <!-- Dynamically generated -->
@@ -108,7 +122,7 @@
     </div>
 
     <script>
-        /* 1. Letter Generation & Delay Stagger */
+        /* 1. Letter Generation Script */
         const phrase = "COMING SOON";
         const container = document.getElementById('textContainer');
 
@@ -121,73 +135,80 @@
                 const letter = document.createElement('span');
                 letter.className = 'letter';
                 letter.textContent = char;
-                letter.style.animationDelay = `${index * 0.12}s`;
+                letter.style.animationDelay = `${index * 0.1}s`;
                 container.appendChild(letter);
             }
         });
 
-        /* 2. Web Audio API - Supersonic Tech Tick Sound Generator */
+        /* 2. Gravitational Space Sound Generator (Web Audio API) */
         let audioCtx = null;
+        let spaceDroneGain = null;
 
-        function initAudio() {
+        function initGravitationalAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Deep Space Drone Bass Oscillator
+                const droneOsc = audioCtx.createOscillator();
+                const droneFilter = audioCtx.createBiquadFilter();
+                spaceDroneGain = audioCtx.createGain();
+
+                droneOsc.type = 'sawtooth';
+                droneOsc.frequency.setValueAtTime(43.65, audioCtx.currentTime); // Low Freq Sub Bass (A1 Note)
+
+                droneFilter.type = 'lowpass';
+                droneFilter.frequency.setValueAtTime(120, audioCtx.currentTime);
+
+                spaceDroneGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                spaceDroneGain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 3);
+
+                droneOsc.connect(droneFilter);
+                droneFilter.connect(spaceDroneGain);
+                spaceDroneGain.connect(audioCtx.destination);
+
+                droneOsc.start();
             }
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
         }
 
-        // High-Tech Crisp "Tick" Sound Effect
-        function playTechTickSound() {
-            if (!audioCtx) return;
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-
-                osc.type = 'triangle';
-                // Fast frequency decay for crisp metallic click/tick
-                osc.frequency.setValueAtTime(1800, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.04);
-
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.04);
-            } catch (e) {}
-        }
-
-        /* 3. HD Hardware-Accelerated Solar Orbit Canvas Engine */
-        const canvas = document.getElementById('solarCanvas');
-        const ctx = canvas.getContext('2d', { alpha: false }); // High Performance Canvas Context
+        /* 3. 7-Layer Solar Orbit & Golden Sparkle Engine */
+        const canvas = document.getElementById('gravityCanvas');
+        const ctx = canvas.getContext('2d', { alpha: false });
 
         let width, height, dpr;
         let centerX, centerY;
         let isMobile = false;
 
-        // Software Ecosystem Icons List
-        const softwareIcons = [
-            { code: '\uf121', name: 'Dev/Code', color: '#00f3ff' },       
-            { code: '\uf5d2', name: 'AI/Tech', color: '#ffd700' },        
-            { code: '\uf201', name: 'Analytics', color: '#bc13fe' },      
-            { code: '\uf1ec', name: 'Calculator', color: '#00ffaa' },     
-            { code: '\uf008', name: 'Video Editing', color: '#ff0055' },  
-            { code: '\uf72b', name: 'VFX/Graphics', color: '#00f3ff' },   
-            { code: '\uf2db', name: 'Hardware/ICT', color: '#ffd700' },   
-            { code: '\uf0ac', name: 'Network', color: '#bc13fe' },        
-            { code: '\uf0c2', name: 'Cloud System', color: '#00ffaa' },   
-            { code: '\uf5dc', name: 'Deep Learning', color: '#ff0055' }   
+        // Ecosystem Software Logos List (Finance, Accounting, POS, AI, Editing, ICT, API, Security)
+        const softwareLogos = [
+            { code: '\uf1ec', name: 'Accounting/Math' },
+            { code: '\uf201', name: 'Finance Analytics' },
+            { code: '\uf53a', name: 'Money/Billing' },
+            { code: '\uf290', name: 'POS/Commerce' },
+            { code: '\uf008', name: 'Video Editing' },
+            { code: '\uf72b', name: 'VFX/Graphics' },
+            { code: '\uf121', name: 'Software Dev' },
+            { code: '\uf5d2', name: 'AI/Science' },
+            { code: '\uf5dc', name: 'Brain Machine Learning' },
+            { code: '\uf0c2', name: 'Cloud API' },
+            { code: '\uf0ac', name: 'Global Network' },
+            { code: '\uf3ed', name: 'Cyber Security' },
+            { code: '\uf2db', name: 'ICT Microchip' },
+            { code: '\uf1b3', name: 'Database Architecture' },
+            { code: '\uf085', name: 'System API Engine' },
+            { code: '\uf09e', name: 'Live Streaming' },
+            { code: '\uf005', name: 'Luxury Quality' },
+            { code: '\uf1e0', name: 'Social Ecosystem' }
         ];
 
         let orbits = [];
-        let stars = [];
+        let goldenStars = [];
+        let globalTime = 0;
 
         function initCanvasSize() {
-            dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap at 2x DPR for maximum performance
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
             width = window.innerWidth;
             height = window.innerHeight;
             isMobile = width < 768;
@@ -202,54 +223,48 @@
             centerX = width / 2;
             centerY = height / 2;
 
-            setupOrbits();
-            setupStars();
+            setupGoldenStars();
+            setup7LayerOrbits();
         }
 
-        function setupStars() {
-            stars = [];
-            // Optimize star count dynamically based on screen resolution
-            const count = isMobile ? 35 : Math.floor((width * height) / 9000);
+        function setupGoldenStars() {
+            goldenStars = [];
+            const count = isMobile ? 60 : 150;
             for(let i = 0; i < count; i++) {
-                stars.push({
+                goldenStars.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    radius: Math.random() * 1.2 + 0.4,
+                    radius: Math.random() * 1.8 + 0.4,
                     alpha: Math.random() * 0.8 + 0.2,
-                    speed: Math.random() * 0.015 + 0.005
+                    speed: Math.random() * 0.02 + 0.005,
+                    sizeGlow: Math.random() * 8 + 2
                 });
             }
         }
 
-        function setupOrbits() {
+        function setup7LayerOrbits() {
             orbits = [];
             const minDim = Math.min(width, height);
             
-            // Adaptive Orbit Radius for Mobile/Desktop
-            const radiusSteps = isMobile ? [
-                minDim * 0.28,
-                minDim * 0.40
-            ] : [
-                minDim * 0.20,
-                minDim * 0.32,
-                minDim * 0.42
-            ];
+            // 7 Radial Layers
+            const layerRatios = [0.12, 0.18, 0.25, 0.32, 0.39, 0.46, 0.53];
+            let logoIdx = 0;
 
-            let iconIdx = 0;
-            radiusSteps.forEach((r, orbitIdx) => {
-                const countInOrbit = isMobile ? 4 : (orbitIdx === 0 ? 3 : (orbitIdx === 1 ? 3 : 4));
-                const speed = (0.004 / (orbitIdx + 1)) * (orbitIdx % 2 === 0 ? 1 : -1);
+            layerRatios.forEach((ratio, layerIdx) => {
+                const radius = minDim * ratio;
+                const countInLayer = isMobile ? 2 : (layerIdx % 2 === 0 ? 3 : 2);
+                const speed = (0.003 / (layerIdx * 0.4 + 1)) * (layerIdx % 2 === 0 ? 1 : -1);
 
-                for (let i = 0; i < countInOrbit; i++) {
-                    if (iconIdx < softwareIcons.length) {
-                        orbits.push({
-                            radius: r,
-                            angle: (Math.PI * 2 / countInOrbit) * i,
-                            speed: speed,
-                            icon: softwareIcons[iconIdx]
-                        });
-                        iconIdx++;
-                    }
+                for (let i = 0; i < countInLayer; i++) {
+                    const logo = softwareLogos[logoIdx % softwareLogos.length];
+                    orbits.push({
+                        layer: layerIdx,
+                        radius: radius,
+                        angle: (Math.PI * 2 / countInLayer) * i,
+                        speed: speed,
+                        logo: logo
+                    });
+                    logoIdx++;
                 }
             });
         }
@@ -257,91 +272,117 @@
         window.addEventListener('resize', initCanvasSize);
         initCanvasSize();
 
-        let lastTickTime = 0;
+        function renderLuxurySolarSystem() {
+            globalTime += 0.01;
 
-        function renderSolarEcosystem(timestamp) {
-            // Pure Pitch Black Background Clear
+            // Pure Pitch Black Clear
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, width, height);
 
-            // 1. Draw Twinkling Ambient Stars
-            for (let i = 0; i < stars.length; i++) {
-                let star = stars[i];
+            // 1. Render Golden Twinkling Sparkle Stars
+            for (let i = 0; i < goldenStars.length; i++) {
+                let star = goldenStars[i];
                 star.alpha += star.speed;
                 if (star.alpha > 1 || star.alpha < 0.2) star.speed *= -1;
 
                 ctx.save();
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = '#ffffff';
+                ctx.fillStyle = '#ffd700';
                 ctx.globalAlpha = star.alpha;
+                ctx.shadowColor = '#ffd700';
+                ctx.shadowBlur = star.sizeGlow;
                 ctx.fill();
                 ctx.restore();
             }
 
-            // 2. Draw Orbit Rings
-            const orbitRings = [...new Set(orbits.map(o => o.radius))];
-            orbitRings.forEach(r => {
+            // 2. Render 7 Golden Dynamic Orbit Rings (Loop-up 3D Wobble Effect)
+            const uniqueRadii = [...new Set(orbits.map(o => o.radius))];
+            uniqueRadii.forEach((r, idx) => {
                 ctx.save();
                 ctx.beginPath();
-                ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
-                ctx.strokeStyle = 'rgba(0, 243, 255, 0.1)';
+                
+                // Slight 3D Loop-up Wobble Motion
+                const wobbleY = Math.sin(globalTime * 0.5 + idx) * 5;
+                ctx.arc(centerX, centerY + wobbleY, r, 0, Math.PI * 2);
+
+                const ringGradient = ctx.createLinearGradient(centerX - r, centerY, centerX + r, centerY);
+                ringGradient.addColorStop(0, 'rgba(255, 215, 0, 0.05)');
+                ringGradient.addColorStop(0.5, 'rgba(255, 215, 0, 0.25)');
+                ringGradient.addColorStop(1, 'rgba(255, 215, 0, 0.05)');
+
+                ctx.strokeStyle = ringGradient;
                 ctx.lineWidth = 1;
-                ctx.setLineDash([4, 4]);
+                ctx.setLineDash([8, 8]);
                 ctx.stroke();
                 ctx.restore();
             });
 
             const activePositions = [];
 
-            // 3. Update & Render Software Icons
+            // 3. Render Orbiting Golden Software Logos
             orbits.forEach(node => {
                 node.angle += node.speed;
+                const wobbleY = Math.sin(globalTime * 0.5 + node.layer) * 5;
+
                 const x = centerX + Math.cos(node.angle) * node.radius;
-                const y = centerY + Math.sin(node.angle) * node.radius;
+                const y = centerY + wobbleY + Math.sin(node.angle) * node.radius;
 
-                activePositions.push({ x, y, color: node.icon.color });
+                activePositions.push({ x, y });
 
-                // Rays to Center
+                // Golden Tether Line to Center (সুতোই বাঁধা গোল্ডেন লেজার)
                 ctx.save();
                 ctx.beginPath();
                 ctx.moveTo(centerX, centerY);
                 ctx.lineTo(x, y);
-                ctx.strokeStyle = node.icon.color;
-                ctx.globalAlpha = 0.12;
+                
+                const laserGrad = ctx.createLinearGradient(centerX, centerY, x, y);
+                laserGrad.addColorStop(0, 'rgba(255, 215, 0, 0.3)');
+                laserGrad.addColorStop(1, 'rgba(255, 215, 0, 0.05)');
+
+                ctx.strokeStyle = laserGrad;
                 ctx.lineWidth = 1;
                 ctx.stroke();
                 ctx.restore();
 
-                // Icon Background Circle
-                const circleRadius = isMobile ? 18 : 22;
+                // Golden Node Shell
+                const nodeRadius = isMobile ? 16 : 20;
                 ctx.save();
                 ctx.beginPath();
-                ctx.arc(x, y, circleRadius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0,0,0,0.85)';
-                ctx.strokeStyle = node.icon.color;
-                ctx.lineWidth = 1.5;
-                ctx.shadowColor = node.icon.color;
-                ctx.shadowBlur = isMobile ? 6 : 12;
+                ctx.arc(x, y, nodeRadius, 0, Math.PI * 2);
+                ctx.fillStyle = '#000000';
+                
+                // Shiny Metallic Border
+                const borderGrad = ctx.createLinearGradient(x - nodeRadius, y - nodeRadius, x + nodeRadius, y + nodeRadius);
+                borderGrad.addColorStop(0, '#ffffff');
+                borderGrad.addColorStop(0.5, '#ffd700');
+                borderGrad.addColorStop(1, '#996515');
+
+                ctx.strokeStyle = borderGrad;
+                ctx.lineWidth = 1.8;
+                ctx.shadowColor = '#ffd700';
+                ctx.shadowBlur = 10;
                 ctx.fill();
                 ctx.stroke();
                 ctx.restore();
 
-                // FontAwesome Icon
+                // FontAwesome Icon Logo inside Shell
                 ctx.save();
-                const fontSize = isMobile ? 14 : 18;
+                const fontSize = isMobile ? 12 : 16;
                 ctx.font = `900 ${fontSize}px "Font Awesome 6 Free"`;
-                ctx.fillStyle = node.icon.color;
-                ctx.shadowColor = node.icon.color;
+                
+                // Icon Gold Gradient Fill
+                ctx.fillStyle = '#ffd700';
+                ctx.shadowColor = '#ffd700';
                 ctx.shadowBlur = 8;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText(node.icon.code, x, y);
+                ctx.fillText(node.logo.code, x, y);
                 ctx.restore();
             });
 
-            // 4. Laser Synapse Connections Between Nearby Icons
-            const maxDistance = isMobile ? 130 : 180;
+            // 4. Connect Inter-node Golden Synapse Lines
+            const maxDistance = isMobile ? 110 : 160;
             for (let i = 0; i < activePositions.length; i++) {
                 for (let j = i + 1; j < activePositions.length; j++) {
                     let dx = activePositions[i].x - activePositions[j].x;
@@ -353,37 +394,26 @@
                         ctx.beginPath();
                         ctx.moveTo(activePositions[i].x, activePositions[i].y);
                         ctx.lineTo(activePositions[j].x, activePositions[j].y);
-                        ctx.strokeStyle = activePositions[i].color;
-                        ctx.globalAlpha = (1 - dist / maxDistance) * 0.3;
-                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = '#ffd700';
+                        ctx.globalAlpha = (1 - dist / maxDistance) * 0.25;
+                        ctx.lineWidth = 0.8;
                         ctx.stroke();
                         ctx.restore();
                     }
                 }
             }
 
-            // Periodic Tech Tick Audio Trigger
-            if (timestamp - lastTickTime > 1200) {
-                playTechTickSound();
-                lastTickTime = timestamp;
-            }
-
-            requestAnimationFrame(renderSolarEcosystem);
+            requestAnimationFrame(renderLuxurySolarSystem);
         }
 
-        // Start animation after FontAwesome icons load
+        // Start render after FontAwesome icon font is ready
         document.fonts.ready.then(() => {
-            requestAnimationFrame(renderSolarEcosystem);
+            requestAnimationFrame(renderLuxurySolarSystem);
         });
 
-        // Interactive Audio Listeners
-        const triggerAudio = () => {
-            initAudio();
-            playTechTickSound();
-        };
-
-        window.addEventListener('click', triggerAudio);
-        window.addEventListener('touchstart', triggerAudio);
+        // Trigger Gravity Space Audio on First Touch/Click
+        window.addEventListener('click', initGravitationalAudio);
+        window.addEventListener('touchstart', initGravitationalAudio);
     </script>
 </body>
 </html>
