@@ -2,1004 +2,321 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>rorraxy academy - Course Hub</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG">
-    <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG">
-    
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RORRAXY C-Tech Academy | Coming Soon</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Cinzel:wght@800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-dark: #000000;
-            --card-bg: #0d0d12;
-            --form-card-bg: #121218;
-            --form-border: rgba(212, 175, 55, 0.3);
-            --input-bg: rgba(255, 255, 255, 0.03);
-            --input-border: rgba(212, 175, 55, 0.2);
-            --input-focus: #d4af37;
-            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-            --gold-solid: #d4af37;
-            --gold-light: #f3e5ab;
-            --text-white: #ffffff;
-            --text-gray: #b3b3c1;
-            --text-muted: #8c8c9e;
-            --required-color: #ff4d4d;
-            --font-main: 'Poppins', sans-serif;
-            --font-heading: 'Montserrat', sans-serif;
+            --bg-pitch-black: #000000;
+            --gold-glow: #ffd700;
+            --cyan-glow: #00f3ff;
+            --purple-glow: #bc13fe;
+            --font-tech: 'Orbitron', sans-serif;
+            --font-luxury: 'Cinzel', serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
+        /* Pure Black Body Override */
         html, body {
             width: 100%;
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            font-family: var(--font-main);
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            padding: 50px 20px 80px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .academy-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        /* Top Header & Logo */
-        .academy-header {
-            text-align: center;
-            margin-bottom: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .academy-logo {
-            width: 95px;
-            height: 95px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.25));
-            transition: transform 0.3s ease;
-        }
-
-        .academy-logo:hover {
-            transform: scale(1.04);
-        }
-
-        .academy-title {
-            font-family: var(--font-heading);
-            font-size: 2.4rem;
-            font-weight: 800;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            text-transform: lowercase;
-        }
-
-        /* Desktop Grid Layout: 4 Columns */
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            align-items: stretch;
-        }
-
-        /* Course Card */
-        .course-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 16px;
-            padding: 28px 22px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .course-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(212, 175, 55, 0.6);
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
-        }
-
-        .card-top {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .course-category {
-            font-family: var(--font-heading);
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-gray);
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .course-category i {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 1rem;
-        }
-
-        .course-badge {
-            align-self: flex-start;
-            font-family: var(--font-heading);
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 5px 10px;
-            border-radius: 6px;
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold-light);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .course-badge.free-badge {
-            background: rgba(46, 204, 113, 0.1);
-            color: #2ecc71;
-            border-color: rgba(46, 204, 113, 0.3);
-        }
-
-        .course-card .course-title {
-            font-family: var(--font-heading);
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-white);
-            margin: 4px 0 8px 0;
-            line-height: 1.4;
-        }
-
-        .course-details {
-            border-top: 1px dashed rgba(212, 175, 55, 0.2);
-            padding-top: 16px;
-            margin-top: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .detail-row {
-            font-size: 0.86rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .detail-label {
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .detail-value {
-            font-weight: 700;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .free-txt {
-            color: #2ecc71 !important;
-            -webkit-text-fill-color: #2ecc71 !important;
-        }
-
-        .btn-apply {
-            display: block;
-            background: var(--gold-gradient);
-            color: #000000;
-            font-family: var(--font-heading);
-            font-weight: 800;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 13px 10px;
-            border-radius: 8px;
-            text-decoration: none;
-            text-align: center;
-            margin-top: 20px;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-            width: 100%;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-apply:hover {
-            opacity: 0.92;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
-        }
-
-        /* Modal Overlay for Admission Form Popup */
-        .form-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.82);
-            backdrop-filter: blur(8px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            padding: 16px;
-            overflow-y: auto;
-        }
-
-        .form-modal-card {
-            background: var(--form-card-bg);
-            border: 1px solid var(--form-border);
-            border-radius: 20px;
-            max-width: 580px;
-            width: 100%;
-            padding: 30px 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.08);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-            margin: auto;
-        }
-
-        .close-form-btn {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--input-border);
-            color: var(--text-white);
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-        }
-
-        .close-form-btn:hover {
-            background: var(--required-color);
-            border-color: var(--required-color);
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-header h2 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Selected Course Banner inside Form */
-        .selected-course-banner {
-            background: rgba(212, 175, 55, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 10px;
-            padding: 12px 16px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .selected-course-banner .sc-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        .selected-course-banner .sc-name {
-            font-family: var(--font-heading);
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--gold-light);
-        }
-
-        .section-header {
-            font-family: var(--font-heading);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold-solid);
-            margin: 18px 0 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-            padding-bottom: 5px;
-        }
-
-        .req-star {
-            color: var(--required-color);
-            font-weight: bold;
-            margin-left: 3px;
-        }
-
-        .profile-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .avatar-box {
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            border: 2px dashed var(--gold-solid);
-            background: var(--input-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
             overflow: hidden;
-            position: relative;
-            transition: all 0.3s ease;
+            background: #000000 !important;
+            background-color: #000000 !important;
+            font-family: var(--font-tech);
+            color: #ffffff;
         }
 
-        .avatar-box:hover {
-            box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
-            border-color: #fff;
-        }
-
-        .avatar-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
-        }
-
-        .avatar-box i {
-            font-size: 1.5rem;
-            color: var(--gold-solid);
-        }
-
-        .upload-label {
-            font-size: 0.76rem;
-            color: var(--text-muted);
-            margin-top: 6px;
-            font-weight: 500;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
-
-        .full-width {
-            grid-column: span 2;
-        }
-
-        label {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-white);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        label i {
-            color: var(--gold-solid);
-            font-size: 0.8rem;
-        }
-
-        .form-input {
-            width: 100%;
-            background: #09090d;
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            border-radius: 8px;
-            padding: 10px 12px;
-            color: #fff;
-            font-family: var(--font-main);
-            font-size: 0.85rem;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-
-        .form-input:focus {
-            border-color: var(--input-focus);
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
-            background: #0f0f15;
-        }
-
-        select.form-input option {
-            background: #121218;
-            color: #fff;
-        }
-
-        textarea.form-input {
-            resize: vertical;
-            min-height: 60px;
-        }
-
-        .file-box {
-            border: 1px dashed rgba(212, 175, 55, 0.4);
-            background: rgba(212, 175, 55, 0.01);
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .file-name-display {
-            font-size: 0.72rem;
-            color: var(--gold-light);
-            margin-top: 4px;
-            display: block;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: var(--gold-gradient);
-            color: #000;
-            font-family: var(--font-heading);
-            font-weight: 800;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 13px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 18px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
-        }
-
-        /* Review Modal */
-        .modal-overlay {
+        /* 100% Solid Black Canvas Layer */
+        #networkCanvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: none;
-            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            background: #000000 !important;
+            pointer-events: none;
+        }
+
+        /* Center Layout Wrapper */
+        .stage-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 20;
+            display: flex;
             justify-content: center;
-            z-index: 1000;
-            padding: 16px;
+            align-items: center;
+            pointer-events: none;
         }
 
-        .modal-card {
-            background: #121218;
-            border: 1px solid var(--gold-solid);
-            border-radius: 18px;
-            max-width: 460px;
-            width: 100%;
-            padding: 24px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
-            max-height: 90vh;
-            overflow-y: auto;
+        /* Compact Refined Glass Card */
+        .glass-pill-card {
+            position: relative;
+            z-index: 30;
+            padding: clamp(12px, 2vw, 22px) clamp(25px, 5vw, 60px);
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            border-top: 1.5px solid rgba(255, 215, 0, 0.7);
+            border-bottom: 1.5px solid rgba(0, 243, 255, 0.6);
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.25),
+                        inset 0 0 15px rgba(255, 215, 0, 0.15);
+            animation: pulseGlow 4s ease-in-out infinite alternate;
         }
 
-        .modal-header {
-            text-align: center;
-            margin-bottom: 14px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            padding-bottom: 8px;
+        @keyframes pulseGlow {
+            0% { border-color: rgba(0, 243, 255, 0.4); box-shadow: 0 0 25px rgba(0, 243, 255, 0.2); }
+            100% { border-color: rgba(255, 215, 0, 0.7); box-shadow: 0 0 45px rgba(255, 215, 0, 0.35); }
         }
 
-        .modal-header h3 {
-            font-family: var(--font-heading);
-            color: var(--gold-light);
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .modal-avatar {
-            text-align: center;
-            margin-bottom: 12px;
-        }
-
-        .modal-avatar img {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            border: 2px solid var(--gold-solid);
-            object-fit: cover;
-        }
-
-        .preview-group {
+        /* Letter Wave Text Container */
+        .coming-soon-wrapper {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-size: 0.82rem;
-            margin-bottom: 18px;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(2px, 0.6vw, 8px);
         }
 
-        .preview-row {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
-            padding-bottom: 5px;
-            gap: 12px;
+        .letter {
+            font-size: clamp(1.4rem, 3.5vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: clamp(2px, 0.5vw, 6px);
+            background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #00f3ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.7));
+            animation: letterShimmer 3s ease-in-out infinite;
         }
 
-        .preview-row span:first-child {
-            color: var(--text-muted);
-            flex-shrink: 0;
+        @keyframes letterShimmer {
+            0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 6px var(--cyan-glow)); }
+            50% { transform: translateY(-5px) scale(1.12); filter: drop-shadow(0 0 16px var(--gold-glow)); }
         }
 
-        .preview-row span:last-child {
-            color: #fff;
-            font-weight: 600;
-            text-align: right;
+        .word-gap {
+            width: clamp(10px, 2vw, 22px);
         }
 
-        .modal-btns {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-edit {
-            flex: 1;
-            background: transparent;
-            border: 1px solid var(--gold-solid);
-            color: var(--gold-light);
-            padding: 11px;
-            border-radius: 8px;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-        }
-
-        .btn-confirm {
-            flex: 1;
-            background: var(--gold-gradient);
-            border: none;
-            color: #000;
-            padding: 11px;
-            border-radius: 8px;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-        }
-
-        /* Responsive Breakpoints for Mobile & Tablet */
-        @media (max-width: 1024px) {
-            .course-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 650px) {
-            body {
-                padding: 20px 12px 40px 12px;
-            }
-
-            .academy-header {
-                margin-bottom: 30px;
-            }
-
-            .academy-logo {
-                width: 75px;
-                height: 75px;
-            }
-
-            .academy-title {
-                font-size: 1.8rem;
-            }
-
-            .course-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .course-card {
-                padding: 22px 18px;
-                border-radius: 14px;
-            }
-
-            .grid-2 { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-            .form-modal-card { padding: 22px 16px; }
-            .form-header h2 { font-size: 1.3rem; }
+        @media (max-width: 768px) {
+            .glass-pill-card { padding: 10px 20px; border-radius: 25px; }
+            .letter { font-size: 1.2rem; letter-spacing: 2px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="academy-container">
-        
-        <!-- Header Section -->
-        <header class="academy-header">
-            <a href="#">
-                <img src="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG" alt="rorraxy logo" class="academy-logo">
-            </a>
-            <h1 class="academy-title">rorraxy academy</h1>
-        </header>
+    <!-- Strict Solid Black Canvas -->
+    <canvas id="networkCanvas"></canvas>
 
-        <!-- Course Cards -->
-        <div class="course-grid">
-
-            <!-- Card 1: Creative Arts -->
-            <div class="course-card">
-                <div class="card-top">
-                    <div class="course-category">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> Creative Arts
-                    </div>
-                    <span class="course-badge">Win-Win Model</span>
-                    <h3 class="course-title">Video Editing & Graphic Design</h3>
-                </div>
-                
-                <div class="card-bottom">
-                    <div class="course-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Admission Fee:</span>
-                            <span class="detail-value">10,000 Taka</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Win-Win Fee:</span>
-                            <span class="detail-value">5% Earnings</span>
-                        </div>
-                    </div>
-                    <button class="btn-apply" onclick="openAdmissionForm('Video Editing & Graphic Design')">Apply Now</button>
-                </div>
-            </div>
-
-            <!-- Card 2: Tech & Software -->
-            <div class="course-card">
-                <div class="card-top">
-                    <div class="course-category">
-                        <i class="fa-solid fa-code"></i> Tech & Software
-                    </div>
-                    <span class="course-badge">Win-Win Model</span>
-                    <h3 class="course-title">Technical Problem Solving</h3>
-                </div>
-                
-                <div class="card-bottom">
-                    <div class="course-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Admission Fee:</span>
-                            <span class="detail-value">15,000 Taka</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Win-Win Fee:</span>
-                            <span class="detail-value">5% Earnings</span>
-                        </div>
-                    </div>
-                    <button class="btn-apply" onclick="openAdmissionForm('Technical Problem Solving')">Apply Now</button>
-                </div>
-            </div>
-
-            <!-- Card 3: E-Commerce -->
-            <div class="course-card">
-                <div class="card-top">
-                    <div class="course-category">
-                        <i class="fa-solid fa-chart-line"></i> E-Commerce
-                    </div>
-                    <span class="course-badge">Win-Win Model</span>
-                    <h3 class="course-title">Global E-Commerce Business</h3>
-                </div>
-                
-                <div class="card-bottom">
-                    <div class="course-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Admission Fee:</span>
-                            <span class="detail-value">10,000 Taka</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Win-Win Fee:</span>
-                            <span class="detail-value">5% Earnings</span>
-                        </div>
-                    </div>
-                    <button class="btn-apply" onclick="openAdmissionForm('Global E-Commerce Business')">Apply Now</button>
-                </div>
-            </div>
-
-            <!-- Card 4: Affiliate Marketing (Pure Free Course) -->
-            <div class="course-card">
-                <div class="card-top">
-                    <div class="course-category">
-                        <i class="fa-solid fa-bullhorn"></i> Affiliate Marketing
-                    </div>
-                    <span class="course-badge free-badge">Free Course</span>
-                    <h3 class="course-title">Affiliate & Smart Income</h3>
-                </div>
-                
-                <div class="card-bottom">
-                    <div class="course-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Admission Fee:</span>
-                            <span class="detail-value free-txt">Free</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Access Type:</span>
-                            <span class="detail-value free-txt">Lifetime Free</span>
-                        </div>
-                    </div>
-                    <button class="btn-apply" onclick="openAdmissionForm('Affiliate & Smart Income')">Apply Now</button>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Admission Form Popup Modal (Click Outside to Close Enabled) -->
-    <div class="form-modal-overlay" id="admissionModalOverlay" onclick="handleOutsideClick(event, 'admissionModalOverlay')">
-        <div class="form-modal-card" id="formModalCard">
-            <button class="close-form-btn" onclick="closeAdmissionForm()"><i class="fa-solid fa-xmark"></i></button>
-            
-            <div class="form-header">
-                <h2>Admission Form</h2>
-            </div>
-
-            <!-- Selected Course Banner -->
-            <div class="selected-course-banner">
-                <div>
-                    <span class="sc-label">Selected Course</span>
-                    <div class="sc-name" id="displayCourseName">Course Name</div>
-                </div>
-                <i class="fa-solid fa-graduation-cap" style="font-size: 1.4rem; color: var(--gold-solid);"></i>
-            </div>
-
-            <form id="admissionForm">
-
-                <!-- Profile Photo -->
-                <div class="profile-container">
-                    <div class="avatar-box" onclick="document.getElementById('profilePhoto').click()">
-                        <i class="fa-solid fa-camera" id="avatarIcon"></i>
-                        <img id="avatarPreview" alt="Profile Preview">
-                    </div>
-                    <input type="file" id="profilePhoto" accept="image/*" style="display:none" required>
-                    <span class="upload-label">Upload Profile Photo <span class="req-star">*</span></span>
-                </div>
-
-                <!-- Personal Information -->
-                <div class="section-header">
-                    <i class="fa-solid fa-user"></i> Personal Information
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group full-width">
-                        <label for="fullname"><i class="fa-solid fa-signature"></i> Full Name <span class="req-star">*</span></label>
-                        <input type="text" id="fullname" class="form-input" placeholder="Enter full name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fatherName"><i class="fa-solid fa-user-tie"></i> Father's Name</label>
-                        <input type="text" id="fatherName" class="form-input" placeholder="Enter father's name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="motherName"><i class="fa-solid fa-person-breastfeeding"></i> Mother's Name</label>
-                        <input type="text" id="motherName" class="form-input" placeholder="Enter mother's name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Number <span class="req-star">*</span></label>
-                        <input type="tel" id="whatsapp" class="form-input" placeholder="01700000000" pattern="[0-9]{11}" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="gender"><i class="fa-solid fa-venus-mars"></i> Gender</label>
-                        <select id="gender" class="form-input">
-                            <option value="" disabled selected>Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="address"><i class="fa-solid fa-location-dot"></i> Full Address</label>
-                        <textarea id="address" class="form-input" placeholder="House/Village, Thana, District"></textarea>
-                    </div>
-                </div>
-
-                <!-- Documents -->
-                <div class="section-header">
-                    <i class="fa-solid fa-file-shield"></i> Verification Document
-                </div>
-
-                <div class="form-group">
-                    <label for="docType"><i class="fa-solid fa-id-card"></i> Document Type</label>
-                    <select id="docType" class="form-input">
-                        <option value="" disabled selected>Select Document Type</option>
-                        <option value="NID Card">NID Card</option>
-                        <option value="Birth Certificate">Birth Certificate</option>
-                        <option value="Academic Certificate">Academic Certificate</option>
-                        <option value="Student ID Card">Student ID Card</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="docFile"><i class="fa-solid fa-file-arrow-up"></i> Upload Certificate or ID Card</label>
-                    <div class="file-box">
-                        <input type="file" id="docFile" accept="image/*,.pdf" class="form-input" onchange="showFileName(this)">
-                        <span id="fileName" class="file-name-display"></span>
-                    </div>
-                </div>
-
-                <button type="button" id="reviewBtn" class="btn-submit">
-                    Review & Submit <i class="fa-solid fa-arrow-right"></i>
-                </button>
-
-            </form>
-        </div>
-    </div>
-
-    <!-- Review Modal (Click Outside to Close Enabled) -->
-    <div class="modal-overlay" id="reviewModal" onclick="handleOutsideClick(event, 'reviewModal')">
-        <div class="modal-card" id="reviewModalCard">
-            <div class="modal-header">
-                <h3>Confirm Your Details</h3>
-            </div>
-
-            <div class="modal-avatar">
-                <img id="modalImg" src="" alt="Profile">
-            </div>
-
-            <div class="preview-group">
-                <div class="preview-row"><span>Course:</span><span id="pCourse"></span></div>
-                <div class="preview-row"><span>Full Name:</span><span id="pName"></span></div>
-                <div class="preview-row"><span>Father's Name:</span><span id="pFather">N/A</span></div>
-                <div class="preview-row"><span>Mother's Name:</span><span id="pMother">N/A</span></div>
-                <div class="preview-row"><span>WhatsApp:</span><span id="pWhatsapp"></span></div>
-                <div class="preview-row"><span>Gender:</span><span id="pGender">N/A</span></div>
-                <div class="preview-row"><span>Address:</span><span id="pAddress">N/A</span></div>
-                <div class="preview-row"><span>Document:</span><span id="pDocType">N/A</span></div>
-            </div>
-
-            <div class="modal-btns">
-                <button class="btn-edit" id="editBtn"><i class="fa-solid fa-pen"></i> Edit</button>
-                <button class="btn-confirm" id="confirmBtn">Confirm & Proceed <i class="fa-solid fa-check"></i></button>
+    <!-- Center Coming Soon Card -->
+    <div class="stage-container">
+        <div class="glass-pill-card">
+            <div class="coming-soon-wrapper" id="textContainer">
+                <!-- Generated dynamically by JavaScript -->
             </div>
         </div>
     </div>
 
     <script>
-        let selectedCourseTitle = "";
+        /* 1. Letter Stagger Generation Script */
+        const phrase = "COMING SOON";
+        const container = document.getElementById('textContainer');
 
-        // Open Admission Form Popup with Clicked Course Name
-        function openAdmissionForm(courseName) {
-            selectedCourseTitle = courseName;
-            document.getElementById('displayCourseName').innerText = courseName;
-            document.getElementById('admissionModalOverlay').style.display = 'flex';
-        }
-
-        // Close Admission Form Popup
-        function closeAdmissionForm() {
-            document.getElementById('admissionModalOverlay').style.display = 'none';
-        }
-
-        // Close modal when clicking outside the card container
-        function handleOutsideClick(event, modalId) {
-            const cardId = modalId === 'admissionModalOverlay' ? 'formModalCard' : 'reviewModalCard';
-            const cardElement = document.getElementById(cardId);
-            if (!cardElement.contains(event.target)) {
-                document.getElementById(modalId).style.display = 'none';
-            }
-        }
-
-        // Profile Photo Preview
-        document.getElementById('profilePhoto').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const img = document.getElementById('avatarPreview');
-                    img.src = event.target.result;
-                    img.style.display = 'block';
-                    document.getElementById('avatarIcon').style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Display File Name
-        function showFileName(input) {
-            const fileNameDisplay = document.getElementById('fileName');
-            if (input.files && input.files[0]) {
-                fileNameDisplay.innerText = "Selected File: " + input.files[0].name;
+        phrase.split('').forEach((char, index) => {
+            if (char === " ") {
+                const space = document.createElement('div');
+                space.className = 'word-gap';
+                container.appendChild(space);
             } else {
-                fileNameDisplay.innerText = "";
+                const letter = document.createElement('span');
+                letter.className = 'letter';
+                letter.textContent = char;
+                letter.style.animationDelay = `${index * 0.15}s`;
+                container.appendChild(letter);
+            }
+        });
+
+        /* 2. Constellation Network & Integrated Icon Logos Engine */
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+
+        // FontAwesome Icons List to render directly on Network Nodes
+        const iconUnicodeList = [
+            '\uf121', // code (Software/Dev)
+            '\uf5d2', // atom (AI/Science)
+            '\uf5dc', // brain (Machine Learning)
+            '\uf2db', // microchip (Hardware/Tech)
+            '\uf008', // film (Video Editing)
+            '\uf72b', // wand-magic-sparkles (VFX/Graphics)
+            '\uf201', // chart-line (Accounting/Analytics)
+            '\uf1ec', // calculator (Finance/Math)
+            '\uf0ac', // globe (Networking)
+            '\uf0c2'  // cloud (Cloud Tech)
+        ];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(icon = null) {
+                this.reset(icon);
+            }
+
+            reset(icon = null) {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.7;
+                this.vy = (Math.random() - 0.5) * 0.7;
+                this.radius = Math.random() * 2.5 + 1.2;
+                this.icon = icon;
+                
+                const colors = ['#ffd700', '#00f3ff', '#bc13fe', '#00ffaa'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.alpha = Math.random() * 0.8 + 0.3;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+
+                if (this.icon) {
+                    // Draw Glowing Icon Logo directly on Node
+                    ctx.font = '900 ' + Math.max(18, Math.min(width * 0.025, 28)) + 'px "Font Awesome 6 Free"';
+                    ctx.fillStyle = this.color;
+                    ctx.shadowColor = this.color;
+                    ctx.shadowBlur = 15;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(this.icon, this.x, this.y);
+                } else {
+                    // Draw Standard Network Point
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.shadowColor = this.color;
+                    ctx.shadowBlur = 10;
+                    ctx.fill();
+                }
+
+                ctx.restore();
             }
         }
 
-        // Review Button Logic
-        document.getElementById('reviewBtn').addEventListener('click', function() {
-            const form = document.getElementById('admissionForm');
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
+        function initNetwork() {
+            particles = [];
+            // Create Special Icon Particles
+            iconUnicodeList.forEach(icon => {
+                particles.push(new Particle(icon));
+            });
+
+            // Create background constellation dots
+            const count = Math.min(Math.floor((width * height) / 9000), 70);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initNetwork();
+
+        function renderPitchBlackNetwork() {
+            // FORCE STRICT SOLID BLACK CANVAS CLEAR (#000000)
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, width, height);
+
+            // Connect Points with Laser Synapse Lines
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = particles[i].color;
+                        ctx.globalAlpha = (1 - dist / 150) * 0.35;
+                        ctx.lineWidth = 0.9;
+                        ctx.stroke();
+                    }
+                }
             }
 
-            document.getElementById('pCourse').innerText = selectedCourseTitle;
-            document.getElementById('pName').innerText = document.getElementById('fullname').value;
-            document.getElementById('pFather').innerText = document.getElementById('fatherName').value || 'N/A';
-            document.getElementById('pMother').innerText = document.getElementById('motherName').value || 'N/A';
-            document.getElementById('pWhatsapp').innerText = document.getElementById('whatsapp').value;
-            document.getElementById('pGender').innerText = document.getElementById('gender').value || 'N/A';
-            document.getElementById('pAddress').innerText = document.getElementById('address').value || 'N/A';
-            document.getElementById('pDocType').innerText = document.getElementById('docType').value || 'N/A';
-            document.getElementById('modalImg').src = document.getElementById('avatarPreview').src;
+            requestAnimationFrame(renderPitchBlackNetwork);
+        }
+        renderPitchBlackNetwork();
 
-            // Hide Form Modal and Show Review Modal
-            document.getElementById('admissionModalOverlay').style.display = 'none';
-            document.getElementById('reviewModal').style.display = 'flex';
-        });
+        /* 3. Automatic Ambient Sound Engine */
+        let audioCtx = null;
 
-        // Edit Button Logic
-        document.getElementById('editBtn').addEventListener('click', function() {
-            document.getElementById('reviewModal').style.display = 'none';
-            document.getElementById('admissionModalOverlay').style.display = 'flex';
-        });
+        function startAutoSpaceSound() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
 
-        // Confirm & Redirect Logic (Affiliate goes to dashboard.html, others go to checkout.html)
-        document.getElementById('confirmBtn').addEventListener('click', function() {
-            if (selectedCourseTitle === "Affiliate & Smart Income") {
-                window.location.href = "dashboard.html";
-            } else {
-                window.location.href = "checkout.html";
-            }
-        });
+                setInterval(() => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(60, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 3);
+
+                    gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 1.5);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 4);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 4);
+                }, 4000);
+            } catch(e) {}
+        }
+
+        window.addEventListener('load', startAutoSpaceSound);
+        window.addEventListener('touchstart', startAutoSpaceSound, { once: true });
+        window.addEventListener('click', startAutoSpaceSound, { once: true });
     </script>
 </body>
 </html>
